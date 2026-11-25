@@ -7,6 +7,7 @@ from fastapi import APIRouter, FastAPI
 
 from alembic import command
 from app.config.base import CONFIG, fastapi_config
+from app.users.router import users_router
 
 _logger = logging.getLogger(__name__)
 
@@ -34,4 +35,5 @@ def health() -> dict[str, str]:
 
 main_router = APIRouter(prefix=CONFIG.GLOBAL_API_PREFIX)
 
+main_router.include_router(users_router)
 app.include_router(main_router)

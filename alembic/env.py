@@ -3,11 +3,12 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
+import app.users.models  # noqa: F401
 from alembic import context
 from app.config.base import CONFIG
 
-# Import every module's models here (unused-import ignored with F401),
-# or autogenerate won't see their tables.
+# Import every module's models above, or autogenerate won't see their
+# tables.
 
 config = context.config
 

@@ -19,9 +19,6 @@ class Config(BaseSettings):
         "postgresql://user:password@localhost:5432/couple_bot"
     )
 
-    API_TOKEN: str = ""
-    """Bearer token for the /api routes. Empty refuses every request"""
-
     model_config = SettingsConfigDict(
         extra="ignore",
         env_file=Path(__file__).parent.parent.parent / ".env",
