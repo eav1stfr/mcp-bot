@@ -20,6 +20,7 @@ class AbstractSchema(BaseModel):
 
     model_config = ConfigDict(
         populate_by_name=True,
+        str_strip_whitespace=True,
         json_encoders={
             datetime: convert_datetime_to_gmt,
             date: convert_date_to_format,
