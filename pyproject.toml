@@ -1,0 +1,82 @@
+[project]
+name = "couple-bot"
+version = "0.1.0"
+description = "Private Telegram bot for two people: wishlists, movies, places and things to do"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.20.1",
+    "fastapi>=0.165.0",
+    "psycopg[binary]>=3.3.9",
+    "pydantic>=2.14.4",
+    "pydantic-settings>=2.16.3",
+    "python-dotenv>=1.2.4",
+    "sqlalchemy>=2.1.9",
+    "sqlmodel>=0.0.50",
+    "uvicorn>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "B008",    # using depends as argument defailts
+    "D417",    # missing argument descriptions in docstrings
+    "D100",    # missing docstring in public module
+    "D101",    # missing docstring in public class
+    "D102",    # missing docstring in public method
+    "D103",    # missing docstring in public function
+    "D104",    # missing docstring in public package
+    "D105",    # missing docstring in magic method
+    "D107",    # missing docstring in __init__
+    "D205",    # blank line required between summary and description
+    "D415",    # first line should end with punctuation
+    "EM101",   # exception message must not use string literal
+    "EM102",   # exception message must not use f-string literal
+    "TRY003",  # long messages inside raise statements
+    "TRY400",  # use logging.exception instead of logging.error
+    "TD002",   # missing author in to-do comment
+    "TD003",   # missing issue link in to-do comment
+    "ANN002",  # missing type annotation for *args
+    "ANN003",  # missing type annotation for **kwargs
+    "ANN401",  # disallows use of Any type
+    "ANN204",  # missing return type on __init__
+    "PTH123",  # use pathlib.Path.open() instead of open()
+    "COM812",  # trailing comma missing (conflicts with Black)
+    "FBT001",  # boolean positional argument in function
+    "FBT002",  # boolean default positional argument in function
+    "PLR0913", # too many arguments
+    "PLR0912", # too many branches
+    "C901",    # function too complex
+    "DTZ011",  # date.today() without timezone
+    "BLE001",  # blind exception catch (intentional in external API calls)
+    "FAST002", # Query() default value style (Annotated[] is newer but not required)
+    "PLR2004", # magic value comparisons
+    "S101",    # assert usage (used as internal sanity checks, not user-facing validation)
+    "RUF001",  # ambiguous unicode char string
+    "PLR0911", # too many return statements
+    "TRY301",  # abstracting raise to inner function is a refactor, not a lint fix
+    "PGH003",  # type: ignore without specific codes
+    "PLR0915", # too many statements
+    "Q000",    # double quotes preffered over single quotes
+    "CPY001",  # copyright notice: personal project, no license header
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Alembic loads these by path; the folder isn't a Python package
+"alembic/**" = ["INP001"]
+# Copied verbatim from m-navigator-general-api; prints are its CLI output
+"scripts/check_migrations.py" = ["T201", "E501", "RUF005", "PERF401"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]

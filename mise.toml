@@ -1,0 +1,18 @@
+[tools]
+python = "3.12"
+
+[env]
+UV_PROJECT_ENVIRONMENT = ".venv"
+
+[tasks.db]
+description = "Starts the DB through docker compose"
+run = "docker compose up -d postgres"
+
+[tasks.dev]
+description = "Run FastAPI in development mode. Optionally accepts --port"
+depends = ["db"]
+run = "uv run uvicorn app.main:app --reload --port {{arg(name='port', default='8000')}}"
+
+[tasks.migrate]
+description = "Apply all migrations to DATABASE_URL"
+run = "uv run alembic upgrade head"
