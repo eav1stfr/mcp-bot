@@ -7,6 +7,7 @@ from fastapi import APIRouter, FastAPI
 
 from alembic import command
 from app.config.base import CONFIG, fastapi_config
+from app.movies.router import movies_router
 from app.users.router import users_router
 from app.wishlists.router import wishlists_router
 
@@ -38,4 +39,5 @@ main_router = APIRouter(prefix=CONFIG.GLOBAL_API_PREFIX)
 
 main_router.include_router(users_router)
 main_router.include_router(wishlists_router)
+main_router.include_router(movies_router)
 app.include_router(main_router)

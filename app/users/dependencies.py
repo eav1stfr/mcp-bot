@@ -16,3 +16,5 @@ def get_actor(
 
 
 ActorDep = Annotated[User, Depends(get_actor)]
+IsKnownUser = Depends(get_actor)
+"""For routes that don't need the actor but must refuse strangers"""

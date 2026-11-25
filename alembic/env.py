@@ -3,6 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
+import app.movies.models
 import app.users.models
 import app.wishlists.models
 from alembic import context
