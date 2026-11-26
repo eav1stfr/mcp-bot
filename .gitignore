@@ -1,2 +1,13 @@
 .DS_Store
 AGENTS*
+PLAN*
+docs/*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.ruff_cache/
+
+# Secrets
+.env
